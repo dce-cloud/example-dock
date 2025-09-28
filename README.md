@@ -9,7 +9,7 @@
 
 | status | service | backend ip | version | 备注 |
 |---|---|---|---|---|
-| whoami | 172.25.100.3 | latest | |
+| &check; | whoami | 172.25.100.3 | latest | |
 
 # 使用到的镜像
 - 默认使用docker.io 镜像
