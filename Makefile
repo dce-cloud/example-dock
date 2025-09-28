@@ -1,0 +1,18 @@
+include .env
+include .cmd.env
+
+.PHONY: help test
+help:
+	@echo "usage: make <option>"
+	@echo "options and effects:"
+	@echo "    help                     : Show help"
+	@echo "    test                     : Test ..."
+
+test:
+	@echo "test ..."
+
+.PHONY: echo_init_network
+echo_init_network:
+	@echo ${DOCKER} network ls
+	@echo ${DOCKER} network create --driver ${NETWORKS_DRIVER} --subnet=${BACKEND_SUBNET} --gateway=${BACKEND_SUBNET_GATEWAY} ${BACKEND_NETWORK_NAME}
+	@echo ${DOCKER} network ls

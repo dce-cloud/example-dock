@@ -1,0 +1,7 @@
+ARG DOCKER_REGISTRY_URL=
+ARG WHOAMI_VERSION=latest
+FROM ${DOCKER_REGISTRY_URL}traefik/whoami:${WHOAMI_VERSION}
+
+LABEL maintainer="zaizai <373045134@qq.com>"
+
+ENV TZ=Asia/Shanghai
