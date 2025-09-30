@@ -1,38 +1,33 @@
-volumes:
-  traefik-whoami:
-    driver: ${VOLUMES_DRIVER}
-  traefik-whoami2:
-    driver: ${VOLUMES_DRIVER}
-
 services:
 
 ### TRAEFIK WHOAMI ##############################################
-  traefik-whoami:
+  whoami1:
     build:
-      context: ${TRAEFIK_WHOAMI_HOST_PATH}
+      context: ${WHOAMI_HOST_PATH}
       args:
         DOCKER_REGISTRY_URL: ${DOCKER_REGISTRY_URL}
-        TRAEFIK_WHOAMI_VERSION: ${TRAEFIK_WHOAMI_VERSION}
-    container_name: ${TRAEFIK_WHOAMI_CONTAINER_NAME}
-    hostname: ${TRAEFIK_WHOAMI_HOSTNAME}
+        WHOAMI_VERSION: ${WHOAMI_VERSION}
+    container_name: ${WHOAMI1_CONTAINER_NAME}
+    hostname: ${WHOAMI1_HOSTNAME}
     restart: ${DOCKER_RESTART_POLICY}
     environment:
       TZ: ${TZ}
     networks:
       backend:
-        ipv4_address: ${TRAEFIK_WHOAMI_BACKEND_IP}
+        ipv4_address: ${WHOAMI1_BACKEND_IP}
 
 ### TRAEFIK WHOAMI 2 ##############################################
-  traefik-whoami2:
+  whoami2:
     build:
-      context: ${TRAEFIK_WHOAMI_HOST_PATH}
+      context: ${WHOAMI_HOST_PATH}
       args:
-        - TRAEFIK_WHOAMI_VERSION=${TRAEFIK_WHOAMI_VERSION}
-    container_name: ${TRAEFIK_WHOAMI_CONTAINER_NAME2}
-    hostname: ${TRAEFIK_WHOAMI_HOSTNAME2}
+        DOCKER_REGISTRY_URL: ${DOCKER_REGISTRY_URL}
+        WHOAMI_VERSION: ${WHOAMI_VERSION}
+    container_name: ${WHOAMI2_CONTAINER_NAME}
+    hostname: ${WHOAMI2_HOSTNAME}
     restart: ${DOCKER_RESTART_POLICY}
     environment:
       TZ: ${TZ}
     networks:
       backend:
-        ipv4_address: ${TRAEFIK_WHOAMI_BACKEND_IP2}
+        ipv4_address: ${WHOAMI2_BACKEND_IP}

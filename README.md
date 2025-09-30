@@ -12,9 +12,6 @@
 | &check; | whoami | 172.25.100.3 | latest | |
 
 # 使用到的镜像
-- 默认使用docker.io 镜像
-- 若想使用自定义仓库镜像，需要定义 `DOCKER_REGISTRY_URL` 变量
-
 ```json
 [
     "traefik/whoami:latest"

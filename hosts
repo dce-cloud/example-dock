@@ -1,5 +1,6 @@
-#  >>> EXAMPLE START >>>
+#  >>> EXAMPLE DOCK START >>>
 
-127.0.0.1 whoami.zaizai.top
+127.0.0.1 whoami1.zaizai.top
+127.0.0.1 whoami2.zaizai.top
 
-# <<< EXAMPLE END <<<
+# <<< EXAMPLE DOCK END <<<
