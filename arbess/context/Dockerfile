@@ -1,0 +1,7 @@
+ARG DOCKER_REGISTRY_URL=
+ARG ARBESS_VERSION=latest
+FROM ${DOCKER_REGISTRY_URL}tiklab-arbess:${ARBESS_VERSION}
+
+LABEL maintainer="zaizai <373045134@qq.com>"
+
+ENV TZ=Asia/Shanghai

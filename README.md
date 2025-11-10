@@ -11,6 +11,7 @@
 | status | service | backend ip | version | 备注 |
 |---|---|---|---|---|
 | &check; | whoami | 172.25.100.3 | latest | |
+| &check; | ARBESS | 172.25.100.10 | latest | |
 
 # 使用到的镜像
 

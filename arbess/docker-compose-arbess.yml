@@ -1,0 +1,19 @@
+services:
+
+### ARBESS ##############################################
+  arbess:
+    build:
+      context: ${ARBESSHOST_PATH}
+      args:
+        DOCKER_REGISTRY_URL: ${DOCKER_REGISTRY_URL}
+        ARBESS_VERSION: ${ARBESS_VERSION}
+    container_name: ${ARBESS_CONTAINER_NAME}
+    hostname: ${ARBESS_HOSTNAME}
+    restart: ${DOCKER_RESTART_POLICY}
+    environment:
+      TZ: ${TZ}
+    ports:
+      - "9200:9200"
+    networks:
+      backend:
+        ipv4_address: ${ARBESS_BACKEND_IP}
