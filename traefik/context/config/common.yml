@@ -1,15 +1,4 @@
-tls:
-  stores:
-    default:
-      defaultCertificate:
-        certFile: /certs/gsudev.cn/gsudev.cn.pem
-        keyFile: /certs/gsudev.cn/gsudev.cn.key
-        
-  certificates:
-    - certFile: /certs/gsudev.cn/gsudev.cn.pem
-      keyFile: /certs/gsudev.cn/gsudev.cn.key
-      stores:
-        - default
+# tls:
 
 RedirectHttpToHttpsRouterAnchor: &RedirectHttpToHttpsRouterAnchor
   entryPoints:
@@ -46,15 +35,4 @@ http:
         scheme: https
         permanent: true
         port: "443"
-        
-  routers:
-    # RedirectHttpToHttps1:
-    #   <<: *RedirectHttpToHttpsRouterAnchor
-    #   rule: "(HostRegexp(`^.+(-)(api)\\.gsudev\\.cn$`) && (PathPrefix(`/api/english/`) || PathPrefix(`/english/rpc/`) || PathPrefix(`/job-api/english/`)))"
-    # RedirectHttpToHttps2:
-    #   <<: *RedirectHttpToHttpsRouterAnchor
-    #   rule: "HostRegexp(`^.+(-)(dc|t|s|zy)\\.gsudev\\.cn$`)"
-    # RedirectHttpToHttps3:
-    #   <<: *RedirectHttpToHttpsRouterAnchor
-    #   rule: "HostRegexp(`^(gateway)\\.devops\\.top$`)"
       
