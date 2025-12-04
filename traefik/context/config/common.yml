@@ -1,0 +1,60 @@
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /certs/gsudev.cn/gsudev.cn.pem
+        keyFile: /certs/gsudev.cn/gsudev.cn.key
+        
+  certificates:
+    - certFile: /certs/gsudev.cn/gsudev.cn.pem
+      keyFile: /certs/gsudev.cn/gsudev.cn.key
+      stores:
+        - default
+
+RedirectHttpToHttpsRouterAnchor: &RedirectHttpToHttpsRouterAnchor
+  entryPoints:
+    - web
+  priority: 2000
+  middlewares:
+    - redirectToHttps
+  service: noop@internal
+        
+http:
+  middlewares:
+    cors:
+      headers:
+        accessControlAllowOriginListRegex: 
+          - "^https?://([a-zA-Z0-9-]+\\.)*devops\\.top$"
+        accessControlAllowHeaders: "Dnt,Host,Pragma,Cache-Control,Ua,Sid,Time,Enduser,Studyplanid,Ssid,Address,Network,Pid,Extendid,Uid,X-Requested-With,Vid,Loctime,Cid,Procitydist,Latitude,Deviceid,Ugsid,Longitude,Product,User-Agent,Source,Devicesn,Accept,Pkgsource,Platform,Ajax,Referer,Accept-Encoding,Accept-Language,Cookie,App-Id,Lcdp-Csrf-Token,Lcdp-Signature,X-CustomHeader,Keep-Alive,If-Modified-Since,Authorization,Content-Type,Ajax,Rtp,Devicetype,Token,Secret,Referrer-Policy,Location_Id"
+        accessControlAllowMethods: "GET,POST,PUT,DELETE,OPTIONS,PATCH"
+        accessControlAllowCredentials: true
+        accessControlMaxAge: 1728000
+        browserXssFilter: true
+        addVaryHeader: true
+        contentTypeNosniff: false
+
+    hsts:
+      headers:
+        stsSeconds: 31536000
+        stsIncludeSubdomains: true
+        forceSTSHeader: true
+        contentSecurityPolicy: "default-src 'self'"
+        referrerPolicy: "strict-origin-when-cross-origin"
+
+    redirectToHttps:
+      redirectScheme:
+        scheme: https
+        permanent: true
+        port: "443"
+        
+  routers:
+    # RedirectHttpToHttps1:
+    #   <<: *RedirectHttpToHttpsRouterAnchor
+    #   rule: "(HostRegexp(`^.+(-)(api)\\.gsudev\\.cn$`) && (PathPrefix(`/api/english/`) || PathPrefix(`/english/rpc/`) || PathPrefix(`/job-api/english/`)))"
+    # RedirectHttpToHttps2:
+    #   <<: *RedirectHttpToHttpsRouterAnchor
+    #   rule: "HostRegexp(`^.+(-)(dc|t|s|zy)\\.gsudev\\.cn$`)"
+    # RedirectHttpToHttps3:
+    #   <<: *RedirectHttpToHttpsRouterAnchor
+    #   rule: "HostRegexp(`^(gateway)\\.devops\\.top$`)"
+      

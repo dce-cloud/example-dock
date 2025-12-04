@@ -1,3 +1,5 @@
 include:
   - ./docker-compose-network.yml
   - ./whoami/docker-compose-whoami.yml
+  - ./traefik/docker-compose-traefik.yml
+  - ./fs/docker-compose-fs.yml
